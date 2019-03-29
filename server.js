@@ -1,9 +1,15 @@
 const os = require('os')
 const net = require('net')
-var express = require("express");
-var app = new express();
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
+// var express = require("express");
+// var app = new express();
+// var http = require("http").Server(app);
+// var io = require("socket.io")(http);
+const Server = require('socket.io');
+const PORTIO  = 3030;
+const server = require('http').Server();
+server.listen(PORTIO); 
+const io = Server(server);
+
 var interfaces = os.networkInterfaces()
 var wifi = interfaces['eth0']
 if(wifi==null){
@@ -15,23 +21,27 @@ else{
 }
 var HOST = ipv4['address']
 var PORT = process.env.PORT || 3000
-var server = net.createServer(function(socket){
+var serverTCP = net.createServer(function(socket){
     console.log('-----------------------Usuario nuevo-------------------------------')
-    socket.on('data', (data)=>{ 
-        datos = JSON.parse(data.toString()); 
-        io.on('connection',function(socket){
-            socket.emit('temperatura',datos["temp"]);
-            socket.emit('humedad',datos["hum"]);
-        console.log("temperatura:"+datos["temp"])
-        console.log("humedad:"+datos["hum"])
+    io.on('connection',function(so){
+
+        socket.on('data', (data)=>{
+            var datos=JSON.parse(data.toString());
+            var temperatura=datos["temp"]
+            var humedad=datos["hum"]
+            so.emit('temperatura',temperatura);
+            so.emit('humedad',humedad);
+            console.log(humedad)
+            
+        })
+        socket.on('close', ()=>{
+            console.log('Usuario desconectado')
         })
     })
-    socket.on('close', ()=>{
-        console.log('Usuario desconectado')
-    })
+    
 })
 
-server.listen(PORT,() => {
+serverTCP.listen(PORT,() => {
     console.log('-------------------------------------------------------------------')
     console.log('Conectado en: '+HOST+':' + PORT);
     console.log('-------------------------------------------------------------------')
