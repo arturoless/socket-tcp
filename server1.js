@@ -20,7 +20,7 @@ else{
     var ipv4 = wifi[0]
 }
 var HOST = ipv4['address']
-var PORT = process.env.PORT || 3000
+var PORT = process.env.PORT || 4500
 var serverTCP = net.createServer(function(socket){
     console.log('-----------------------Usuario nuevo-------------------------------')
     io.on('connection',function(so){

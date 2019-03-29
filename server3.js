@@ -1,5 +1,5 @@
 const io = require('socket.io-client');
-const socket = io.connect('http://localhost:5050', {reconnect: true});
+const socket = io.connect('http://157.230.169.186:5050', {reconnect: true});
 const sudo = require('sudo-js');
 sudo.setPassword('vasquez123');
 const exec = require('child_process').exec
