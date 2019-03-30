@@ -27,7 +27,6 @@ var serverTCP = net.createServer(function(socket){
             var humedad=datos["hum"]
             so.emit('temperatura',temperatura);
             so.emit('humedad',humedad);
-            console.log(humedad)
             
         })
         socket.on('close', ()=>{
