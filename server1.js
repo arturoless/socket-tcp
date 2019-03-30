@@ -1,9 +1,5 @@
 const os = require('os')
 const net = require('net')
-// var express = require("express");
-// var app = new express();
-// var http = require("http").Server(app);
-// var io = require("socket.io")(http);
 const Server = require('socket.io');
 const PORTIO  = 3030;
 const server = require('http').Server();

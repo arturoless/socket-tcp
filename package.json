@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "child_process": "^1.0.2",
-    "express": "^4.16.4",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
     "sudo-js": "^1.0.2"
