@@ -21,14 +21,11 @@ var serverTCP = net.createServer(function(socket){
     console.log('-----------------------Usuario nuevo-------------------------------')
     io.on('connection',function(so){
 
-        socket.on('data', (data)=>{
-            so.on('riego', (datos)=>{
-                socket.write(datos)
-            })
-            so.on('eliminar', (datos)=>{
-                socket.write(datos)
-            })
-            
+        so.on('riego', (datos)=>{
+            socket.write(datos)
+        })
+        so.on('eliminar', (datos)=>{
+            socket.write(datos)
         })
         socket.on('close', ()=>{
             console.log('Usuario desconectado')
