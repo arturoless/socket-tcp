@@ -25,6 +25,7 @@ var serverTCP = net.createServer(function(socket){
             socket.write(datos)
         })
         so.on('eliminar', (datos)=>{
+            console.log(datos)
             socket.write(datos)
         })
         socket.on('close', ()=>{
