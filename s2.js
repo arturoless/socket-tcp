@@ -22,11 +22,11 @@ var serverTCP = net.createServer(function(socket){
     io.on('connection',function(so){
 
         socket.on('data', (data)=>{
-            so.on('riego', (data)=>{
-                socket.write(data)
+            so.on('riego', (datos)=>{
+                socket.write(datos)
             })
-            so.on('eliminar', (data)=>{
-                socket.write(data)
+            so.on('eliminar', (datos)=>{
+                socket.write(datos)
             })
             
         })
