@@ -9,9 +9,9 @@ const server2 = require('http').Server();
 server2.listen(PORTIO2); 
 const io2 = Server(server2);
 
-io.on('connection',function(socket){
+io2.on('connection',function(socket){
     
-    io2.on('connection',function(socket2){
+    io.on('connection',function(socket2){
         socket.on('riego', (data)=>{
             console.log(data)
             socket2.emit('riegopi',data);
