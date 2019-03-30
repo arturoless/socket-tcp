@@ -18,15 +18,14 @@ else{
 var HOST = ipv4['address']
 var PORT = process.env.PORT || 5500
 var serverTCP = net.createServer(function(socket){
-    socket.write('a')
     console.log('-----------------------Usuario nuevo-------------------------------')
     io.on('connection',function(so){
-
         so.on('riego', (datos)=>{
-            socket.write('a')
+            socket.write(datos)
         })
         so.on('eliminar', (datos)=>{
             console.log(datos)
+            socket.write(datos)
             
         })
         socket.on('close', ()=>{
