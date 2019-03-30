@@ -17,21 +17,23 @@ else{
 }
 var HOST = ipv4['address']
 var PORT = process.env.PORT || 5500
+var serverTCP = net.createServer(function(socket){
+    console.log('-----------------------Usuario nuevo-------------------------------')
+    io.on('connection',function(so){
 
-io.on('connection',function(so){
-    const serverTCP = net.createServer(function(socket){
-        console.log('-----------------------Usuario nuevo-------------------------------')
-    so.on('riego', (datos)=>{
-        socket.write(datos)
-       
+        so.on('riego', (datos)=>{
+            socket.write('a')
+        })
+        so.on('eliminar', (datos)=>{
+            console.log(datos)
+            socket.write('a')
+        })
+        socket.on('close', ()=>{
+            console.log('Usuario desconectado')
+        })
     })
-    so.on('eliminar', (datos)=>{
-        socket.write(datos)
-    })
-    })
-})
     
-
+})
 
 serverTCP.listen(PORT,() => {
     console.log('-------------------------------------------------------------------')
