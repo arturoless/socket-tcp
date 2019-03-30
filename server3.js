@@ -6,12 +6,21 @@ const exec = require('child_process').exec
 
 // Add a connect listener
 socket.on('connect', function () {
+  console.log(':)')
 });
 socket.on('riegopi', function(data){
     console.log(data)
-    exec('echo "'+"12 * * * *"+' python3 /home/isaac/consPlanta/bomba.py" >> /home/isaac/consPlanta/cron')
-    var command = ['crontab', '>>', '/home/isaac/consPlanta/cron'];
-    sudo.exec(command, function(err, pid, result) {
-      console.log(result); // output '';
-    });
+    // exec('echo "'+"12 * * * *"+' python3 /home/isaac/consPlanta/bomba.py" >> /home/isaac/consPlanta/cron')
+    // var command = ['crontab', '>>', '/home/isaac/consPlanta/cron'];
+    // sudo.exec(command, function(err, pid, result) {
+    //   console.log(result); // output '';
+    // });
+});
+socket.on('eliminarpi', function(data){
+  console.log(data)
+  // exec('echo "'+"12 * * * *"+' python3 /home/isaac/consPlanta/bomba.py" >> /home/isaac/consPlanta/cron')
+  // var command = ['crontab', '>>', '/home/isaac/consPlanta/cron'];
+  // sudo.exec(command, function(err, pid, result) {
+  //   console.log(result); // output '';
+  // });
 });
