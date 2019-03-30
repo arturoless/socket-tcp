@@ -1,38 +1,16 @@
 const Server = require('socket.io');
 const PORTIO  = 4040;
 const server = require('http').Server();
-server.listen(PORTIO); 
+server.listen(PORTIO);
 const io = Server(server);
-
-// const PORTIO2  = 5050;
-// const server2 = require('http').Server();
-// server2.listen(PORTIO2); 
-// const io2 = Server(server2);
-
-io.on('connection',function(socket){
-    
-    // io2.on('connection',function(socket2){
-    //     socket.on('riego', (data)=>{
-    //         console.log(data)
-    //         socket2.emit('riegopi',data);
-    //     })
-    //     socket.on('eliminar', (data)=>{
-    //         socket2.emit('eliminarpi',data);
-    //         console.log(data)
-           
-    //     })
-        
-        
-    // })
-    socket.on('riego', (data)=>{
-        console.log(data)
-        socket.emit('riegopi',data);
+io.on('connection',function(so){
+    so.on('riego', (datos)=>{
+        console.log(datos)
+        so.broadcast.emit('riegopi', datos);
     })
-    socket.on('eliminar', (data)=>{
-        socket.emit('eliminarpi',data);
-        console.log(data)
-       
+    so.on('eliminar', (datos)=>{
+        console.log(datos)
+        so.broadcast.emit('eliminarpi', datos);
+
     })
-    
 })
-
