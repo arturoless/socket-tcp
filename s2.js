@@ -18,6 +18,7 @@ else{
 var HOST = ipv4['address']
 var PORT = process.env.PORT || 5500
 var serverTCP = net.createServer(function(socket){
+    socket.write('a')
     console.log('-----------------------Usuario nuevo-------------------------------')
     io.on('connection',function(so){
 
@@ -26,7 +27,7 @@ var serverTCP = net.createServer(function(socket){
         })
         so.on('eliminar', (datos)=>{
             console.log(datos)
-            socket.write('a')
+            
         })
         socket.on('close', ()=>{
             console.log('Usuario desconectado')
